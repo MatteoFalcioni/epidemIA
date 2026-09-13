@@ -22,14 +22,10 @@ def list_add_dicts(
     return left + right
 
 
-# NOTE: (!) 
+# NOTE
 # If we want to propagate the variables added by middleware (todos) we need to add them to the state and update them in the nodes, 
 # otherwise they will not be propagated in the graph and the middleware will not work properly. 
-# Here I have a a doubt: is this necessary because supervisor has no node -> subagents are subgraphs,
-# or is this generally needed? need to investigate...
-# Also: we should be losing reducers for the middleware variables if we define state like we do below
-# this isn't a problem for agents that do not work in parallel like in our case, but it surely isn't best practice
-
+# This could be avoided maybe by giving the supervisor its own node
 class MyState(AgentState):
     """
     Custom state for the graph. Inherits from AgentState -> automatically contains messages.
@@ -41,9 +37,6 @@ class MyState(AgentState):
             list of todos for the analyst to perform.
     """
 
-    simulations: Annotated[
-        list[dict], list_add_dicts
-    ]  # list of dicts, each dicts is a simulation run with its datetime and results (parameters, metrics, etc.)
     code_logs: Annotated[
         list[dict], list_add_dicts
     ]  # list of dicts (we need chronological order!), each dicts is input and output of a code block (out can be stdout or stderr or both)
