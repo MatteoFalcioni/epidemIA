@@ -193,7 +193,7 @@ def make_fit_tools(models_list: list[str]):
         
         # Check if the user asked for prediction during an outbreak.
         if df.loc[start_date].smooth < threshold:
-            return {'Message' : f'No epidemic increase in the incidence detected at required time.'}
+            return {'Message' : f'No epidemic increase in the incidence detected at required time. Slide start_date more near the epidemic increase if data allow it.'}
 
 
         df = df[df.index <= start_date]
@@ -262,7 +262,7 @@ def make_fit_tools(models_list: list[str]):
     @tool
     def incidence(runtime: ToolRuntime,
                   csv_path: Annotated[str, "Path to the CSV file containing the full data range of incidence data before start date."],
-                start_date : str,
+                start_date : Annotated[str, "Start date for the forecast in YYYY-MM-DD format."],
                   end_date : str,
                   col_name : Annotated[str, "Name of the column in the CSV file containing incidence data."] = "incidence",
                 model_name : Annotated[str, "Name of the epidemiological model to use."] = "SIR",
@@ -316,7 +316,7 @@ def make_fit_tools(models_list: list[str]):
         
         # Check if the user asked for prediction during an outbreak.
         if df.loc[start_date].smooth < threshold:
-            return {'Message' : f'No epidemic increase in the incidence detected at required time.'}
+            return {'Message' : f'No epidemic increase in the incidence detected at required time. Slide start_date more near the epidemic increase if data allow it.'}
 
 
         df = df[df.index <= start_date]
