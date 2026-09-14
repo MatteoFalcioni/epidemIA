@@ -193,7 +193,7 @@ def make_fit_tools(models_list: list[str]):
         
         # Check if the user asked for prediction during an outbreak.
         if df.loc[start_date].smooth < threshold:
-            return {'Message' : f'No epidemic increase in the incidence detected at required time. Slide start_date more near the epidemic increase if data allow it.'}
+            return {'Message' : f'No epidemic increase in the incidence detected at required time. You should report to the supervisor that the prediction cannot be performed because there is no epidemic increase in the incidence detected at required time.'}
 
 
         df = df[df.index <= start_date]
@@ -316,7 +316,7 @@ def make_fit_tools(models_list: list[str]):
         
         # Check if the user asked for prediction during an outbreak.
         if df.loc[start_date].smooth < threshold:
-            return {'Message' : f'No epidemic increase in the incidence detected at required time. Slide start_date more near the epidemic increase if data allow it.'}
+            return {'Message' : f'No epidemic increase in the incidence detected at required time. You should report to the supervisor that the prediction cannot be performed because there is no epidemic increase in the incidence detected at required time.'}
 
 
         df = df[df.index <= start_date]
