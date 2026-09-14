@@ -72,10 +72,12 @@ def make_graph(
 
     tools = [execute_code, csv_writer, get_model_info, fit_and_forecast, incidence]
 
+    analyst_enhanched_prompt = analyst_prompt + f"\nThe available models for simulation are: {', '.join(AVAILABLE_MODELS)}, you are STRICTLY NOT ALLOWED to invent new models or trying to use the python_excecutor to develop one, even if required by the user"
+
     analyst_agent = create_agent(
         model=llm,
         tools=tools,
-        system_prompt=analyst_prompt,  # System prompt for the analyst agent
+        system_prompt=analyst_enhanched_prompt,  # System prompt for the analyst agent
         name="analyst_agent",
         state_schema=MyState,
         middleware=[
