@@ -32,6 +32,8 @@ PARAMETER_FIELDS = {'beta'     : float,
 fit_parameters_defaults = {'beta'     : 0.8,
                            'mu'       : 0.2,
                            'gamma'    : 0.2,
+                           'f' : 1e-2/2,
+                            'N' : 4e5,
                            'E0'       : None, # Infer from incidence data
                            'I0'       : None, # Infer from incidence data.
                            'baseline' : None} # Infer from incidence data.
