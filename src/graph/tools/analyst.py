@@ -355,7 +355,8 @@ def make_fit_tools(models_list: list[str]):
         #            "timestamp": datetime.now(timezone.utc).isoformat(),
                     "model": model_name,
                     "predicted_incidence": predicted_incidence_list,
-                    "predicted incidence dates" : incidence_dates
+                    "predicted incidence dates" : incidence_dates,
+                    "parameters": parameters
                 }
         
         
