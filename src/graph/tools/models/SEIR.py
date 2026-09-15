@@ -54,8 +54,8 @@ EXPLAIN_PARAMETERS = {'beta'     : 'Infectivity rate (average number of people i
                       
 # Fitting bounds for the parameters
 bounds = ((0.,     np.inf), # beta,
-          (0.,     np.inf), # mu,
-          (0.,     np.inf), # gamma,
+          (1e-1,     np.inf), # mu,
+          (1e-1,     np.inf), # gamma,
           (0.,     np.inf), # I0
           (0.,     np.inf), # E0
           (0.,     10)) # baseline infections
