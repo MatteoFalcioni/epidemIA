@@ -44,7 +44,7 @@ EXPLAIN_PARAMETERS = {'beta'     : 'Infectivity rate (average number of people i
 
 # Fitting bounds for the parameters
 bounds = ((0.,     np.inf), # beta
-          (0.,     np.inf), # mu (Infectivity period is capped at 10 days.
+          (1e-1,     np.inf), # mu (Infectivity period is capped at 10 days.
           (0.,     np.inf), # I0
           (0.,     10)) # baseline infections
 
