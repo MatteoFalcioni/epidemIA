@@ -47,7 +47,7 @@ def make_graph(
     # ======= SUPERVISOR =======
     supervisor_llm = get_ollama_model(
         model_name=os.getenv("SUPERVISOR_MODEL", "qwen3.8:27b"),
-        temperature = 0.0  # default to qwen3.5:27b if not set
+        temperature=0.0,
     ) 
 
     AVAILABLE_MODELS = discover_models()
@@ -65,8 +65,8 @@ def make_graph(
 
     # ======= ANALYST AGENT =======
     llm = get_ollama_model(
-        model_name=os.getenv("ANALYST_MODEL", "qwen3.8:27b"),  # default to qwen3.5:27b if not set
-        temperature = 0.0
+        model_name=os.getenv("ANALYST_MODEL", "qwen3.8:27b"),
+        temperature=0.0,
     ) 
 
     #AVAILABLE_MODELS = discover_models()

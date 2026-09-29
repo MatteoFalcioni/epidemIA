@@ -1,0 +1,27 @@
+[project]
+name = "epidemia"
+version = "0.1.0"
+description = "Multi-Agentic AI System with epidemiological simulation and data-analysis capabilities."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aiosqlite",
+    "deepagents==0.4.12",
+    "gradio==6.14.0",
+    "langchain==1.2.13",
+    "langchain-core",
+    "langchain-ollama",
+    "langchain-openai",
+    "langgraph==1.1.10",
+    "langgraph-checkpoint-sqlite",
+    "markdown",
+    "matplotlib",
+    "numpy",
+    "pandas",
+    "python-dotenv",
+    "scipy",
+    "typing-extensions",
+]
+
+[tool.uv]
+package = false
