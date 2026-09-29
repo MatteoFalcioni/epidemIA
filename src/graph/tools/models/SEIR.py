@@ -32,6 +32,9 @@ PARAMETER_FIELDS = {'beta'     : float,
 fit_parameters_defaults = {'beta'     : 0.8,
                            'mu'       : 0.2,
                            'gamma'    : 0.2,
+                           'f' : 1e-2/2,
+                            'N' : 4e5,
+                           'E0'       : None, # Infer from incidence data
                            'I0'       : None, # Infer from incidence data.
                            'baseline' : None} # Infer from incidence data.
 
@@ -51,8 +54,8 @@ EXPLAIN_PARAMETERS = {'beta'     : 'Infectivity rate (average number of people i
                       
 # Fitting bounds for the parameters
 bounds = ((0.,     np.inf), # beta,
-          (0.,     np.inf), # mu,
-          (0.,     np.inf), # gamma,
+          (1e-1,     np.inf), # mu,
+          (1e-1,     np.inf), # gamma,
           (0.,     np.inf), # I0
           (0.,     np.inf), # E0
           (0.,     10)) # baseline infections
@@ -123,7 +126,7 @@ def fit_model(incidence_data, metric,
                          'mu'   : fit_mu,
                          'E0'   : fit_E0,
                          'I0'   : fit_I0,
-                         'bl'   : fit_bl,
+                         'baseline'   : fit_bl,
                          'N'    : N,
                          'f'    : f}
 
@@ -175,7 +178,7 @@ def incidence(beg, end, parameters):
     mu   = parameters['mu']
     I0   = parameters['I0']
     E0   = parameters['E0']
-    bl   = parameters['bl']
+    bl   = parameters['baseline']
     N    = parameters['N']
     f    = parameters['f']
 

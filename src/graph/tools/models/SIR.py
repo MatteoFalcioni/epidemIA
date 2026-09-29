@@ -44,7 +44,7 @@ EXPLAIN_PARAMETERS = {'beta'     : 'Infectivity rate (average number of people i
 
 # Fitting bounds for the parameters
 bounds = ((0.,     np.inf), # beta
-          (0.,     np.inf), # mu (Infectivity period is capped at 10 days.
+          (1e-1,     np.inf), # mu (Infectivity period is capped at 10 days.
           (0.,     np.inf), # I0
           (0.,     10)) # baseline infections
 
@@ -111,7 +111,7 @@ def fit_model(incidence_data, metric,
     fitted_parameters = {'beta' : fit_beta,
                          'mu'   : fit_mu,
                          'I0'   : fit_I0,
-                         'bl'   : fit_bl,
+                         'baseline'   : fit_bl,
                          'N'    : N,
                          'f'    : f}
 
@@ -158,7 +158,7 @@ def incidence(beg, end, parameters):
     beta = parameters['beta']
     mu   = parameters['mu']
     I0   = parameters['I0']
-    bl   = parameters['bl']
+    bl   = parameters['baseline']
     N    = parameters['N']
     f    = parameters['f']
 

@@ -25,7 +25,8 @@ The tool to perform spidemiologic simulation are dynamically imported from the m
 You have two tools to infer the correct parameters for a given model and to use it for fit and predictions:
 
 - get_model_info → returns the parameters and defaults for a given model
-- fit_and_forecast → it's the actual tool for fitting and forecasting, READ ITS DOCSTRING before using it
+- fit_and_forecast → it's the actual tool for fitting and forecasting, READ ITS DOCSTRING before using it. NEVER filter the dates or incidence data, use all of them.
+- incidence → it's the tool for simulating incidence values in hypotetic scenarios, READ ITS DOCSTRING before using it. ALWAYS specify all the parameters values in its arguments, even if they are the default ones. You can use get_model_info to know which parameters you can set for each model. Use as start_date the first date of the fit, if you have at your disposal the fit_and_forecast output, otherwise use the first date of the csv you are using for the simulation. Use as end_date the last date of the fit, if you have at your disposal the fit_and_forecast output, otherwise use the last date of the csv you are using for the simulation.
 
 ALWAYS call get_model_info(model) before aswering to know using fit_and_forecast, to know which parameters you can set for each model.
 
@@ -59,7 +60,7 @@ Use the csv_writer tool to create the csv you will need to perform simulations. 
 
 
 ## STEP 3: Running simulations and making predictions
-Use the fit_and_forecast tool to predict future scenarios.
+Use the fit_and_forecast tool to predict future scenarios. NEVER filter the dates or incidence data, use all of them.
 
 
 This requires a CSV that comes as output of csv_writer tool.
@@ -71,7 +72,7 @@ About `model_parameters`:
 - You can provide only a subset of fields inside `model_parameters`; missing fields will use defaults.
 - If you need a parameter belonging to the socio-economic area, just take the one that fits best with the city of Bologna. 
 
-Therefore, your substeps will be: 
+Therefore, your substeps will be:
 - i. starting from the existing data, prepare a CSV file with the required structure (if not already available) by using the csv_writer tool.
 
 - ii. use the predicting tool to use the chosen model and find the best fitting parameters.
@@ -79,8 +80,9 @@ Therefore, your substeps will be:
 
 ### Step 3 notes: General Instructions for Visualization and Data Analysis
 
-- if you need to produce any visualization, save them in the agent_outputs/ folder and report the path to the supervisor agent.
+- If you need to produce any visualization, ALWAYS and ONLY save them in the agent_outputs/ folder and report the path to the supervisor agent.
 - When creating visualizations, NEVER use plt.show(). Only save the file to the specified folder using plt.savefig() and then close the plot.
+- If you have date indices and values to plot, ALWAYS use all of them.
 - If your code is erroring many times, you can stop and report the errors to the supervisor, asking to report to the user, specifying the error you're seeing. As a rule of thumb, if the same code errors 3 times, stop and report the error to the supervisor.
 - Always use this exact template for plotting: import matplotlib.pyplot as plt
 import os
@@ -116,5 +118,7 @@ You should be concise and clear in your reporting, providing only the relevant i
 ## FINAL NOTES
 
 - IMPORTANT RULE: **be concise, do not overhink**
+
+- save EVERY visualization output you produce in agent_outputs/ folder and report the path to the supervisor agent.
 
 """
