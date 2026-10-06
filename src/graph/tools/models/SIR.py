@@ -111,9 +111,7 @@ def fit_model(incidence_data, metric,
     fitted_parameters = {'beta' : fit_beta,
                          'mu'   : fit_mu,
                          'I0'   : fit_I0,
-                         'baseline'   : fit_bl,
-                         'N'    : N,
-                         'f'    : f}
+                         'baseline'   : fit_bl}
 
     # Begin construction of return.
 
@@ -122,6 +120,7 @@ def fit_model(incidence_data, metric,
     fit_result['status']            = optimum.status
     fit_result['metric_minimum']    = optimum.fun
     fit_result['fitted_parameters'] = fitted_parameters
+    fit_result['fixed_parameters']  = fixed_parameters
     fit_result['gradient']          = optimum.jac
     fit_result['R0']                = fit_beta/fit_mu
 

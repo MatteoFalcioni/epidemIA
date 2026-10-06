@@ -126,9 +126,7 @@ def fit_model(incidence_data, metric,
                          'mu'   : fit_mu,
                          'E0'   : fit_E0,
                          'I0'   : fit_I0,
-                         'baseline'   : fit_bl,
-                         'N'    : N,
-                         'f'    : f}
+                         'baseline'   : fit_bl}
 
     # Begin construction of return.
 

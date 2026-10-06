@@ -218,9 +218,10 @@ def make_fit_tools(models_list: list[str]):
 
         
         sim_incidence, dt_index = model.incidence(fit_begin, end_date, 
-                                        fit['fitted_parameters'])
+                                        fit['fitted_parameters'] | fit['fixed_parameters'])
         
         fit_parameters = {k: (float(v) if hasattr(v, 'item') else v) for k, v in fit['fitted_parameters'].items()}
+        fixed_parameters = {k: (float(v) if hasattr(v, 'item') else v) for k, v in fit['fixed_parameters'].items()}
         predicted_incidence_list = [float(value) for value in sim_incidence]
         incidence_dates = [str(date.date()) for date in dt_index]
 
@@ -228,7 +229,8 @@ def make_fit_tools(models_list: list[str]):
 #            "timestamp": datetime.now(timezone.utc).isoformat(),
             "model": model_name,
             "csv_path": csv_path,
-            "parameters": fit_parameters,
+            "fitted parameters": fit_parameters,
+            "fixed parameters": fixed_parameters,
             'R0': float(fit['R0']),
             "rmse": float(fit['metric_minimum']),
             "success": bool(fit['success']),
